@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-// In production (Netlify), use the relative path so it hits the Netlify functions proxy.
-// Locally, use the Express server on port 5002.
-const API_URL = import.meta.env.PROD ? '/api/' : 'http://localhost:5002/api/';
+// Dynamically detect if we are running locally or in production
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_URL = isLocal ? 'http://localhost:5002/api/' : '/api/';
 
 const api = axios.create({
     baseURL: API_URL,

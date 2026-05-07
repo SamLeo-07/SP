@@ -27,7 +27,8 @@ const DashboardLayout = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [sidebarOpen, setSidebarOpen] = useState(true);
-    const UPLOADS_URL = import.meta.env.PROD ? '/uploads/' : 'http://localhost:5002/uploads/';
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const UPLOADS_URL = isLocal ? 'http://localhost:5002/uploads/' : '/uploads/';
 
     const handleLogout = () => {
         if (window.confirm('Are you sure you want to logout?')) {

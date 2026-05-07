@@ -19,7 +19,8 @@ const StudentProfile = () => {
     const [uploadingPhoto, setUploadingPhoto] = useState(false);
     const [uploadingResume, setUploadingResume] = useState(false);
 
-    const UPLOADS_URL = import.meta.env.PROD ? '/uploads/' : 'http://localhost:5002/uploads/';
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const UPLOADS_URL = isLocal ? 'http://localhost:5002/uploads/' : '/uploads/';
 
     useEffect(() => {
         fetchProfile();
